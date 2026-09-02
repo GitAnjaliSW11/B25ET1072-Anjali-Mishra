@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int sum=0;
+    cout<<"Even numbers between 1 to 50 are: \n";
+    for (int i=1;i<=50;i++) {
+        if (i%2==0) {
+            cout<<" "<<i;
+            sum+=i;
+        }
+    }
+    cout<<"\n The sum of even numbers between 1 and 50 is: "<<sum<<endl;
+    return 0;
+}
