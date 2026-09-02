@@ -1,0 +1,90 @@
+#include <iostream>
+#include <complex>
+using namespace std;
+
+class Complex
+{
+    int real, img;
+public:
+    void getData();
+    void putData();
+    void add(Complex c1, Complex c2);
+    void subtr(Complex c1, Complex c2);
+    void mult(Complex c1, Complex c2);
+    void divi(Complex c1, Complex c2);
+};
+
+void Complex::getData()
+{
+    cout << "Enter real part: ";
+    cin >> real;
+
+    cout << "Enter imaginary part: ";
+    cin >> img;
+}
+
+void Complex::add(Complex c1, Complex c2)
+{
+    real = c1.real+c2.real;
+    img = c1.img+c2.img;
+}
+
+void Complex::subtr(Complex c1, Complex c2)
+{
+    real = c1.real-c2.real;
+    img = c1.img-c2.img;
+}
+
+void Complex::mult(Complex c1, Complex c2)
+{
+    real = (c1.real*c2.real) - (c1.img*c2.img);
+    img = (c1.real*c2.img) + (c1.img*c2.real);
+}
+
+void Complex::divi(Complex c1, Complex c2)
+{
+    real=((c1.real*c2.real) + (c1.img*c2.img))/((c2.real*c2.real)+(c2.img*c2.img));
+    img=((c1.img*c2.real) - (c1.real*c2.img))/((c2.real*c2.real)+(c2.img*c2.img));
+}
+
+
+void Complex::putData()
+{
+    if (img < 0)
+    {
+        cout << "Complex Number = " << real << " - " << -img << "i" << endl;
+    }
+    else
+    {
+        cout << "Complex Number = " << real << " + " << img << "i" << endl;
+    }
+}
+
+int main() {
+    Complex c1, c2, c3, c4, c5, c6;
+
+    cout << "First Number" << endl;
+    c1.getData();
+
+    cout << "\nSecond Number" << endl;
+    c2.getData();
+
+    c3.add(c1, c2);
+    c4.subtr(c1,c2);
+    c5.mult(c1,c2);
+    c6.divi(c1,c2);
+   
+    cout << "\nSum of entered no. is" << endl;
+    c3.putData();
+   
+    cout << "\nDifference of entered no. is" << endl;
+    c4.putData();
+
+    cout << "\nProduct of entered no. is" << endl;
+    c5.putData();
+    
+    cout << "\nQuotient of entered no. is" << endl;
+    c6.putData();
+   
+    return 0;
+}
