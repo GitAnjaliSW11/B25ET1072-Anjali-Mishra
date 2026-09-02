@@ -9,12 +9,16 @@ int multiply(int a, int b, int c) {
 }
 
 int main() {
-
-    int result1 = multiply(5, 4);
-  
-    int result2 = multiply(2, 3, 4);
-
-    cout << "Product of two integers: " << result1 << endl;
+    int x1, x2;
+    int y1, y2, y3;
+    cout << "Enter two integers to multiply: ";
+    cin >> x1 >> x2;
+    int result1 = multiply(x1, x2);
+    cout << "Product of two integers: " << result1 << endl << endl;
+    
+    cout << "Enter three integers to multiply: ";
+    cin >> y1 >> y2 >> y3;
+    int result2 = multiply(y1, y2, y3);
     cout << "Product of three integers: " << result2 << endl;
     return 0;
 }
