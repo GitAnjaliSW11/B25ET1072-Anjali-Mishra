@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class ComplexNum {
+private:
+    int real, imag;
+
+public:
+    ComplexNum(int r = 0, int i = 0) {
+        real = r;
+        imag = i;
+    }
+    
+    ComplexNum operator - (ComplexNum const &obj1) {
+        ComplexNum obj2;
+        obj2.real = real - obj1.real;
+        obj2.imag = imag - obj1.imag;
+        return obj2;
+    }
+
+    void print() {
+        if (imag >= 0)
+            cout << real << " + i" << imag << endl;
+        else
+            cout << real << " + i(" << imag << ")" << endl;
+    }
+};
+
+int main() {
+    int r1, i1, r2, i2;
+
+    cout << "Enter real and imaginary parts of the first complex number:" << endl;
+    cout << "Real: ";
+    cin >> r1;
+    cout << "Imaginary: ";
+    cin >> i1;
+    ComplexNum comp1(r1, i1);
+
+    cout << "\nEnter real and imaginary parts of the second complex number:" << endl;
+    cout << "Real: ";
+    cin >> r2;
+    cout << "Imaginary: ";
+    cin >> i2;
+    ComplexNum comp2(r2, i2);
+
+    cout << "\nThe two complex numbers are:" << endl;
+    comp1.print();
+    comp2.print();
+
+    cout << "\nThe result of the subtraction is: ";
+    ComplexNum comp3 = comp1 - comp2;
+    comp3.print();
+
+    return 0;
+}
