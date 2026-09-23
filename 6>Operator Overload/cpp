@@ -11,13 +11,15 @@ public:
         imag = i;
     }
     
+    //definition of - operator (how it works)
     ComplexNum operator - (ComplexNum const &obj1) {
         ComplexNum obj2;
         obj2.real = real - obj1.real;
         obj2.imag = imag - obj1.imag;
         return obj2;
     }
-
+    
+    //definition of print for o/p convenience
     void print() {
         if (imag >= 0)
             cout << real << " + i" << imag << endl;
@@ -28,25 +30,29 @@ public:
 
 int main() {
     int r1, i1, r2, i2;
-
+    
+    //Taking input of first number
     cout << "Enter real and imaginary parts of the first complex number:" << endl;
     cout << "Real: ";
     cin >> r1;
     cout << "Imaginary: ";
     cin >> i1;
     ComplexNum comp1(r1, i1);
-
+    
+    //Taking input of second number
     cout << "\nEnter real and imaginary parts of the second complex number:" << endl;
     cout << "Real: ";
     cin >> r2;
     cout << "Imaginary: ";
     cin >> i2;
     ComplexNum comp2(r2, i2);
-
+    
+    //displaying both numbers
     cout << "\nThe two complex numbers are:" << endl;
     comp1.print();
     comp2.print();
-
+    
+    //displaying the result
     cout << "\nThe result of the subtraction is: ";
     ComplexNum comp3 = comp1 - comp2;
     comp3.print();
