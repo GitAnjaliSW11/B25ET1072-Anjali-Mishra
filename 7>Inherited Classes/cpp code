@@ -1,0 +1,92 @@
+#include <iostream> 
+#include <string>
+using namespace std;
+
+// Base Class - basicInfo
+class basicInfo { //Defines a base class to store fundamental personal details
+protected:         //Protected access allows derived classes to access these vars directly
+    string name;   //Stores the employee's name as a string
+    int empId;     //Stores the employee's ID no.
+    char gender;   //Stores the employee's gender as a single char
+
+public:                 //Public access allows these member functns to be called outside the class
+    void getBasicInfo(void) // Defines a functn to accept personal info from the user
+    {
+        cout << "Enter Name: "; //Prints a prompt asking the user for the employee's name
+        cin >> name;            //Reads a single word into the name var
+        cout << "Enter Emp. Id: "; //Prints a prompt asking the user for the employee ID
+        cin >> empId;           //Reads the integer val entered by the user into empId
+        cout << "Enter Gender: "; //Prints a prompt asking the user for the employee's gender
+        cin >> gender;          // Reads the single char entry into the gender var
+    }
+};
+
+// Base Class - deptInfo
+class deptInfo {   //Defines a base class to store professional dept details
+protected:         //Protected access allows derived classes to access these variables directly
+    string deptName;     //Stores the dept name as a string
+    string assignedWork; //Stores the desc of the assigned work task
+    int joiningYear;     //Stores the calendar year the employee joined the company
+
+public:                //Public access allows these member functns to be called outside the class
+    void getDeptInfo(void) //Defines a functn to accept dept info from the user
+    {
+        cout << "Enter Department Name: "; //Prints a prompt asking for the dept name
+        cin >> deptName;                    //Reads a single word into the deptName variable
+        cout << "Enter assigned work: ";    //Prints a prompt asking for the assigned work description
+        cin >> assignedWork;                //Reads a single word into the assignedWork variable
+        cout << "Enter Joining Year (e.g., 2018): "; //Prints a prompt asking for the joining year
+        cin >> joiningYear;                 //Reads the integer val entered by the user into joiningYear
+    }
+};
+
+// final class (Derived Class)- employee
+class employee : public basicInfo, public deptInfo { //Utilises multiple inheritance from basicInfo and deptInfo
+private:                    //Private variable specific to the employee class calculation
+    int currentYear;        //Stores the user-inputted active calendar year
+
+public:                    //Public access allows these member functns to be called from the main function
+    void getEmployeeInfo(void) //Defines a wrapper functn to fetch all data
+    {
+        cout << "Enter employee's basic info: " << endl; //Prints a section header for basic info
+        getBasicInfo(); //Inherited from basicInfo; calls the functn to prompt for personal data
+        cout << "\nEnter employee's department info: " << endl; //Prints a section header for dept info
+        getDeptInfo();  //Inherited from deptInfo; calls the functn to prompt for company data
+        cout << "Enter Current Year: "; //Prints a prompt asking for the current calendar year
+        cin >> currentYear;             //Reads the integer val entered by the user into currentYear
+    }
+
+    int calculateServiceYears(void) const //Defines a constant functn to calc service duration
+    {
+        return currentYear - joiningYear; //Calcs difference and returns total years of service
+    }
+
+    void printEmployeeInfo(void) //Defines a functn to output all gathered employee profile metrics
+    {
+        cout << "\n======================================" << endl;
+        cout << "Employee's Information is: " << endl;
+        cout << "======================================" << endl;
+        cout << "Basic Information...:" << endl;          
+        cout << "Name: " << name << endl;         //Outputs the name value inherited from basicInfo
+        cout << "Employee ID: " << empId << endl; //Outputs the empId value inherited from basicInfo
+        cout << "Gender: " << gender << endl << endl; //Outputs the gender character
+
+        cout << "Department Information...:" << endl; //Prints a section heading for company details
+        cout << "Department Name: " << deptName << endl;     //Outputs deptName inherited from deptInfo
+        cout << "Assigned Work: " << assignedWork << endl; //Outputs assignedWork inherited from deptInfo
+        cout << "Joining Year: " << joiningYear << endl;   //Outputs joiningYear inherited from deptInfo
+        
+        cout << "Total Years of Service: " << calculateServiceYears() << " years" << endl; // Calcs and outputs service years
+        cout << "======================================" << endl;
+    }
+};
+
+int main()
+{
+    employee emp; //Instantiates an object named emp using the derived employee class blueprint
+
+    emp.getEmployeeInfo();   //Calls the employee class function to prompt the user and fill data fields
+    emp.printEmployeeInfo(); //Calls the employee class function to compute years and render results
+
+    return 0;
+}
